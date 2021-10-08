@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ag-grid-enterprise": "^26.1.0",
+    "jquery.tabulator": "^3.5.3"
+  }
+}
