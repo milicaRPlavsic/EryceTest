@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-//import '../assets/js/sendRequest.js';
 import '../assets/js/myApp.js';
 
 declare const init:any;
-//declare const sendRequest:any;
+
 
 @Component({
   selector: 'app-root',

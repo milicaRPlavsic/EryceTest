@@ -76,11 +76,16 @@ function init() {
 
   const MAIN_GRID = document.querySelector('#main-grid');
   const FORM = document.getElementById('form');
-  let singlePlanetData;
   const CREATE_PLANET_MODAL = document.getElementById('add-modal');
-  let action;
   const TABLE_GRID = document.querySelector('#table-div');
   const IMG_PREVIEW = document.getElementById('img-preview');
+  let singlePlanetData;
+  let action;
+
+  sendRequest('api/planets', 'GET').then((response) => {
+    addPlanetsToTable(response);
+    addPlanetsToGrid(response);
+  });
 
   const backdropToggle = () => {
     const BACKDROP = document.getElementById('backdrop');
@@ -172,11 +177,6 @@ function init() {
     addEventOnSinglePlanet(TABLE_GRID, '.selected-tr');
   };
 
-  sendRequest('api/planets', 'GET').then((response) => {
-    addPlanetsToTable(response);
-    addPlanetsToGrid(response);
-  });
-
   const modalActions = (display) => {
     document.querySelector('#modal-popup').style.display = display;
     backdropToggle();
@@ -260,12 +260,10 @@ function init() {
     while (switching) {
       switching = false;
       rows = table.rows;
-      console.log(rows);
       for (i = 1; i < rows.length - 1; i++) {
         shouldSwitch = false;
         x = rows[i].querySelectorAll('td')[n];
         y = rows[i + 1].querySelectorAll('td')[n];
-        console.log(n);
         if (dir == 'asc') {
           if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
             shouldSwitch = true;
@@ -373,7 +371,7 @@ function init() {
       createPlanet();
     } else {
       sendRequest(`api/planets/${ID}`, 'DELETE').then((response) => {
-        window.location.reload(); // DA LI OVO DA OSTAVIM
+        window.location.reload();
       });
     }
 
@@ -381,7 +379,6 @@ function init() {
   });
 
   const AddDataInForm = () => {
-    console.log(singlePlanetData);
     const properties = ({
       imageName,
       planetName,
