@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { PlanetsModule } from '../planets/planets.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    PlanetsModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent],
