@@ -1,4 +1,4 @@
-import { Planet } from "planets/model/Planet";
+import { Planet } from "../model/Planet";
 import *as PlanetActions from './planets.actions';
 
 export interface State {
@@ -14,14 +14,13 @@ export function PlanetReducer (state: State = initialState, action: PlanetAction
     
     switch(action.type) {
         case PlanetActions.SET_PLANETS:
+            console.log('set')
+            console.log([...action.data]);
             return {
                 ...state,
                 planets: [...action.data]
             }
-        case PlanetActions.FETCH_PLANETS:
-            return {
-
-            }
+       
         case PlanetActions.ADD_PLANET:
             return {
                 ...state,

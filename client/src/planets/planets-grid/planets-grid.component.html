@@ -1,1 +1,7 @@
-<p>planets-grid works!</p>
+<div>
+<button (click)="bla()">Grid</button>
+<app-planet-grid
+*ngFor="let planet of planets"
+[planet]="planet"
+></app-planet-grid>
+</div>

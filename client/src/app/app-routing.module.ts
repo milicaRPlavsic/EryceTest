@@ -2,11 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../planets/header/header.component';
 import { PlanetsComponent } from '../planets/planets.component';
+import { SinglePlanetComponent } from '../planets/single-planet/single-planet.component';
+import { PlanetsGridComponent } from '../planets/planets-grid/planets-grid.component';
+import { PlanetsTableComponent } from '../planets/planets-table/planets-table.component';
 
 
 const routes: Routes = [
-  {path : 'planets', component: PlanetsComponent},
-  {path : '', component: PlanetsComponent}
+ 
+  {path : 'planets', component: PlanetsComponent, children: [
+    {path: 'grid' , component: PlanetsGridComponent},
+    {path: 'table' , component: PlanetsTableComponent},
+    {path: ':id' , component: SinglePlanetComponent},
+  ]},
+  //{path : '', redirectTo : '/planets'}
 ];
 
 @NgModule({

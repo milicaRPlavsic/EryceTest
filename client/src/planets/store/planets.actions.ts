@@ -1,6 +1,5 @@
 import { Action } from "@ngrx/store";
-import { read } from "fs";
-import { Planet } from "planets/model/Planet";
+import { Planet } from "../model/Planet";
 
 export const SET_PLANETS = 'Set Planets'
 export const FETCH_PLANETS = 'Fetch Planets';
@@ -16,6 +15,7 @@ export class SetPlanets implements Action {
 
 export class FetchPlanets implements Action {
     readonly type= FETCH_PLANETS
+    
 }
 
 export class AddPlanet implements Action {

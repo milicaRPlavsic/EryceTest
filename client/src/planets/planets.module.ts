@@ -6,6 +6,13 @@ import { PlanetGridComponent } from './planets-grid/planet-grid/planet-grid.comp
 import { PlanetsTableComponent } from './planets-table/planets-table.component';
 import { PlanetTableComponent } from './planets-table/planet-table/planet-table.component';
 import { HeaderComponent } from './header/header.component';
+import { SinglePlanetComponent } from './single-planet/single-planet.component';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import * as PlanetReducer from './store/planets.reducer';
+import { PlanetsEffects } from './store/planets.effects';
+import { EffectsModule } from '@ngrx/effects';
+
 
 
 
@@ -16,9 +23,15 @@ import { HeaderComponent } from './header/header.component';
     PlanetGridComponent,
     PlanetsTableComponent,
     PlanetTableComponent, 
-    HeaderComponent],
+    HeaderComponent,
+    SinglePlanetComponent,
+    ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    RouterModule,
+    StoreModule.forRoot(PlanetReducer),
+    EffectsModule.forRoot([PlanetsEffects])
+  ],
+  exports : [ ]
 })
 export class PlanetsModule { }

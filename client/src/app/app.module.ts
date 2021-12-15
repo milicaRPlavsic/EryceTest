@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { PlanetsModule } from '../planets/planets.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,7 +18,8 @@ import { PlanetsModule } from '../planets/planets.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    PlanetsModule
+    PlanetsModule,
+    
    
   ],
   providers: [],

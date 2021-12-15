@@ -1,1 +1,27 @@
-<p>header works!</p>
+<header id="main-header">
+    <h1>Planets</h1>
+    <div id="def-header-div" class="def-header-div.visible">
+      <img
+        id="grid-view"
+        width="30"
+        height="30"
+        src="../../assets/images/gridIcon.png"
+        (click)="onGridIcon()"
+      />
+      <img
+        id="table-view"
+        width="30"
+        height="30"
+        src= "../../assets/images/tableIcon.png"
+        (click)="OnTableIcon()"
+      />
+    </div>
+    <div>
+      <input type="text" id="input-search" placeholder="Search for planets.." />
+    </div>
+  
+    <div id="header-div" class="headerModal">
+      <button id="delete-btn">Delete</button>
+    </div>
+    <button id="create-btn">Create</button>
+  </header>

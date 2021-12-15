@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as PlanetReducer from './store/planets.reducer';
+import * as PlanetActions from './store/planets.actions'
 
 @Component({
   selector: 'app-planets',
@@ -7,10 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanetsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<PlanetReducer.State>) { }
 
   ngOnInit(): void {
-    console.log('bla')
+    this.store.dispatch(new PlanetActions.FetchPlanets());
   }
 
 }

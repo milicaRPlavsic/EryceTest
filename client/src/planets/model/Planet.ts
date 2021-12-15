@@ -1,10 +1,14 @@
 export interface Planet {
     id: number;
-    name:string;
+    planetName:string;
     imageUrl: string;
+    imageName: string;
     description: string;
-    planetRadiusKM: number;
     planetColor: string;
-    distFromEarth: number;
-    distFromSun: number
+    planetRadiusKM: number;
+    distInMillionsKM: { 
+        fromSun: number, 
+        fromEarth: number
+    };
+
 }
