@@ -15,13 +15,7 @@ export class PlanetsEffects {
         
      return this.http.get<Planet[]>('http://localhost:3001/api/planets')
     }),
-    map( planets => {
-        return planets.map(planet => {
-            return {
-                ...planet
-            }
-        })
-    }),
+   
     map(planets => {
         console.log(planets);
         return new PlanetActions.SetPlanets(planets);

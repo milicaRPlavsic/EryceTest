@@ -1,1 +1,15 @@
-<button>Table</button>
+<td>
+  <img
+    style="height: 100%"
+    class="img-radius"
+    width="30"
+    height="30"
+    src="{{ planet.imageUrl }}"
+  />
+</td>
+<td class="sort">{{ planet.planetName }}</td>
+<td style="font-size: 11px">{{ planet.description }}</td>
+<td class="sort">{{ planet.planetColor }}</td>
+<td class="sort">{{ planet.planetRadiusKM }}</td>
+<td class="sort">{{ planet.distInMillionsKM.fromSun }}</td>
+<td class="sort">{{ planet.distInMillionsKM.fromEarth }}</td>

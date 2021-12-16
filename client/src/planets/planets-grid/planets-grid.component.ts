@@ -1,38 +1,30 @@
-import { Component, OnDestroy, OnInit, Output } from '@angular/core';
-import {Planet} from '../model/Planet';
-import * as PlanetReducer from '../store/planets.reducer';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators'; 
-import { Subscription } from 'rxjs';
-
+import { Component, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from "@angular/core";
+import { Planet } from "../model/Planet";
+import * as PlanetReducer from "../store/planets.reducer";
+import { createFeatureSelector, createSelector, Store } from "@ngrx/store";
+import { map } from "rxjs/operators";
+import { Observable, Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-planets-grid',
-  templateUrl: './planets-grid.component.html',
-  styleUrls: ['./planets-grid.component.scss']
+  selector: "app-planets-grid",
+  templateUrl: "./planets-grid.component.html",
+  styleUrls: ["./planets-grid.component.scss"],
 })
-export class PlanetsGridComponent implements OnInit, OnDestroy {
+export class PlanetsGridComponent implements OnInit {
 
-  subscription: Subscription;
-  planets: Planet [] = [];
-  
-  constructor(private store: Store<PlanetReducer.State>) { }
+  stateSelector = createFeatureSelector<PlanetReducer.State>("PlanetReducer");
+  planetsSelector = createSelector(this.stateSelector, state => state.planets);
+
+  planets: Observable<Planet[]> = this.store.select(this.planetsSelector);
+
+  constructor(private store: Store<PlanetReducer.State>) {}
 
   ngOnInit(): void {
-    this.subscription = this.store
-    .select('planets')
-    .subscribe((planets: Planet[]) => {
-      this.planets = planets;
-    });
-
+   
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  
 
-  bla() {
-    console.log("planete "+ this.planets);
-  }
 
+  
 }

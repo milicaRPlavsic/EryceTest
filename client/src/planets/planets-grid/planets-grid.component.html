@@ -1,7 +1,7 @@
-<div>
-<button (click)="bla()">Grid</button>
-<app-planet-grid
-*ngFor="let planet of planets"
-[planet]="planet"
-></app-planet-grid>
+<app-header></app-header>
+<div class="grid-container">
+  <app-planet-grid
+    *ngFor="let planet of planets | async"
+    [planet]="planet"
+  ></app-planet-grid>
 </div>

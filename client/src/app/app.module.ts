@@ -7,6 +7,8 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { PlanetsModule } from '../planets/planets.module';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools'
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -19,7 +21,7 @@ import { PlanetsModule } from '../planets/planets.module';
     FormsModule,
     HttpClientModule,
     PlanetsModule,
-    
+    StoreDevtoolsModule.instrument({logOnly: environment.production})
    
   ],
   providers: [],

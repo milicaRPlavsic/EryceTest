@@ -284,7 +284,7 @@ input:focus {
 }
 
 .grid-container > div {
-  background-color: #e97c4a;
+  background-color: yellow;
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
@@ -294,12 +294,8 @@ input:focus {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
-  background-color: white;
+  background-color: #e97c4a;
   padding: 10px;
-}
-
-.grid-container.visible {
-  display: none;
 }
 
 .grid-container-single {
@@ -317,16 +313,6 @@ input:focus {
   font-size: 30px;
 }
 
-.grid-container.visible {
-  display: none;
-}
-
-.grid-container > div {
-  background-color: #e97c4a;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-}
 
 .inline {
   display: inline-block;

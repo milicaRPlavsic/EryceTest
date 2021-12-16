@@ -25,6 +25,7 @@ import { EffectsModule } from '@ngrx/effects';
     PlanetTableComponent, 
     HeaderComponent,
     SinglePlanetComponent,
+
     ],
   imports: [
     CommonModule,

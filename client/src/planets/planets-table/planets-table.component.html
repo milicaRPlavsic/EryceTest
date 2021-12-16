@@ -1,1 +1,17 @@
-<button>Table</button>
+<app-header></app-header>
+<div id="table-div">
+  <table id="table-planets">
+    <tr class="header">
+      <th style="width: 5%">Image</th>
+      <th style="width: 15%">Name</th>
+      <th style="width: 20%">Description</th>
+      <th id="sort-color" style="width: 15%">Color</th>
+      <th style="width: 15%">Radius[km]</th>
+      <th style="width: 15%">Dist. from Sun</th>
+      <th style="width: 15%">Dist. from Earth</th>
+    </tr>
+    <tbody>
+        <tr app-planet-table *ngFor="let planet of planets | async" [planet]="planet" (click)="onPlanetTable(planet)"></tr>
+    </tbody>
+  </table>
+</div>

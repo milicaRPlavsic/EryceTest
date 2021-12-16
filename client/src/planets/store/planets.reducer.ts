@@ -1,6 +1,7 @@
 import { Planet } from "../model/Planet";
 import *as PlanetActions from './planets.actions';
 
+
 export interface State {
     planets: Planet[];
 }
@@ -8,6 +9,7 @@ export interface State {
 const initialState: State = {
     planets: []
 }
+
 
 
 export function PlanetReducer (state: State = initialState, action: PlanetActions.Actions) {

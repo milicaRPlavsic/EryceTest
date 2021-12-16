@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'single-planet-header',
+  templateUrl: './single-planet-header.component.html',
+  styleUrls: ['./single-planet-header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
@@ -15,12 +15,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onGridIcon() {
-    this.router.navigate(['planets','grid']);
-  }
 
-  OnTableIcon() {
-    this.router.navigate(['planets','table']);
-  }
 
 }

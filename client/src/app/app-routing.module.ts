@@ -8,8 +8,9 @@ import { PlanetsTableComponent } from '../planets/planets-table/planets-table.co
 
 
 const routes: Routes = [
- 
+  {path : '' , redirectTo: 'planets', pathMatch: 'full'}, 
   {path : 'planets', component: PlanetsComponent, children: [
+    {path: '', pathMatch: 'full', redirectTo: 'grid'},
     {path: 'grid' , component: PlanetsGridComponent},
     {path: 'table' , component: PlanetsTableComponent},
     {path: ':id' , component: SinglePlanetComponent},

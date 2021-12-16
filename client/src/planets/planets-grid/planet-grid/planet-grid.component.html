@@ -1,5 +1,5 @@
-<div class="div-item">
-  <img class="img-radius" width="50" height="50" src="">
+<div class="div-item" (click)="onPlanetGrid(planet)">
+  <img class="img-radius" width="50" height="50" src={{planet.imageUrl}}>
   <h2>{{planet.planetName}}</h2>
   <div class="inline">
     <div class="wrap">
@@ -8,11 +8,11 @@
   </div>
   <div id="textbox">
     <span class="alignleft">Color: {{planet.planetColor}}</span>
-    <span class="alignright">Dist.from Sun: planet.distFromSun</span>
+    <span class="alignright">Dist.from Sun: {{planet.distInMillionsKM.fromSun}}</span>
   </div>
   <div style="clear: both;"></div>
   <div id="textbox">
-    <span class="alignleft">Radius[km]: planet.planetRadiusKM</span>
-    <span class="alignright">Dist.from Earth: planet.distFromEarth</span>
+    <span class="alignleft">Radius[km]: {{planet.planetRadiusKM}}</span>
+    <span class="alignright">Dist.from Earth: {{planet.distInMillionsKM.fromEarth}}</span>
   </div>
 </div>

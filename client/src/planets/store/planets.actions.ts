@@ -30,9 +30,8 @@ export class DeletePlanet implements Action {
 
 export class UpdatePlanet implements Action {
     readonly type = UPDATE_PLANET;
-    constructor(public data: Planet) {} // mozda ID
+    constructor(public data: Planet) {} 
 }
-
 
 export type Actions = SetPlanets | FetchPlanets | AddPlanet | DeletePlanet | UpdatePlanet 
 
