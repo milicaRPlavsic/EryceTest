@@ -34,9 +34,14 @@ export class SinglePlanetComponent implements OnInit {
       );
 
       planetsWithRouteParam$.subscribe( sub =>  { 
-        this.planet = sub[0][ sub[1]['id'] - 1] 
-        
-      
+        // this.planet = sub[0][ sub[1]['id'] - 1]       // promeni ovo 
+        const planets: Planet[] = sub[0];
+        const id = +sub[1].id;
+        this.planet = planets.find(planet => planet.id === id);
       });
+  }
+
+  edit() {
+    
   }
 }

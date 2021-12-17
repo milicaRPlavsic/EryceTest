@@ -1,3 +1,5 @@
+<app-single-planet-header [planet]="planet"></app-single-planet-header>
+<form-modal *ngIf="" [planet]="planet" (onConfirm)="edit()"></form-modal> 
 <div class="grid-container-single" *ngIf="planet">
     <div>
       <img class="img-radius" width="70" height="70" src={{planet.imageUrl}}>

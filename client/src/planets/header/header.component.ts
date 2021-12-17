@@ -1,6 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import * as PlanetReducer from "../store/planets.reducer";
+import { Store } from "@ngrx/store";
+import * as PlanetActions from '../store/planets.actions'
+
 
 @Component({
   selector: 'app-header',
@@ -10,7 +14,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private store: Store<PlanetReducer.State>) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +25,12 @@ export class HeaderComponent implements OnInit {
 
   OnTableIcon() {
     this.router.navigate(['planets','table']);
+  }
+
+  onCreatePlanet() {
+
+    this.store.dispatch(new PlanetActions.ChangeModalIndicator(true));
+    
   }
 
 }

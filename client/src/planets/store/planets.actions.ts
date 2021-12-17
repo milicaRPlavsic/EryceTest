@@ -6,6 +6,8 @@ export const FETCH_PLANETS = 'Fetch Planets';
 export const ADD_PLANET = 'Add Planet';
 export const DELETE_PLANET = 'Delete Planet';
 export const UPDATE_PLANET = 'Update Planet';
+export const CHANGE_MODAL_INICATOR ='Change modal indicator';
+export const CHANGE_CONFIRMATION_INDICATOR ='Change confirmation indicator';
 
 
 export class SetPlanets implements Action {
@@ -33,5 +35,16 @@ export class UpdatePlanet implements Action {
     constructor(public data: Planet) {} 
 }
 
-export type Actions = SetPlanets | FetchPlanets | AddPlanet | DeletePlanet | UpdatePlanet 
+export class ChangeModalIndicator implements Action {
+    readonly type = CHANGE_MODAL_INICATOR;
+    constructor(public data: boolean) {}
+}
+
+export class ChangeConfirmationIndicator implements Action {
+    readonly type = CHANGE_CONFIRMATION_INDICATOR;
+    constructor(public data: boolean) {}
+
+}
+
+export type Actions = SetPlanets | FetchPlanets | AddPlanet | DeletePlanet | UpdatePlanet | ChangeModalIndicator | ChangeConfirmationIndicator
 

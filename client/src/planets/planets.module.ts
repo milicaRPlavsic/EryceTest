@@ -12,6 +12,10 @@ import { StoreModule } from '@ngrx/store';
 import * as PlanetReducer from './store/planets.reducer';
 import { PlanetsEffects } from './store/planets.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { SinglePlanetHeaderComponent } from './single-planet-header/single-planet-header.component';
+import { FormModalComponent } from './form-modal/form-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormConfirmationComponent } from './form-confirmation/form-confirmation.component';
 
 
 
@@ -25,13 +29,17 @@ import { EffectsModule } from '@ngrx/effects';
     PlanetTableComponent, 
     HeaderComponent,
     SinglePlanetComponent,
-
+    SinglePlanetHeaderComponent,
+    FormModalComponent,
+    FormConfirmationComponent,
+    
     ],
   imports: [
     CommonModule,
     RouterModule,
     StoreModule.forRoot(PlanetReducer),
-    EffectsModule.forRoot([PlanetsEffects])
+    EffectsModule.forRoot([PlanetsEffects]),
+    ReactiveFormsModule
   ],
   exports : [ ]
 })

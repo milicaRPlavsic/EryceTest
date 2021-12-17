@@ -3,11 +3,15 @@ import *as PlanetActions from './planets.actions';
 
 
 export interface State {
-    planets: Planet[];
+    planets: Planet[],
+    modalIndicator: boolean,
+    confirmationIndicator : boolean
 }
 
 const initialState: State = {
-    planets: []
+    planets: [],
+    modalIndicator: false,
+    confirmationIndicator : false
 }
 
 
@@ -42,6 +46,16 @@ export function PlanetReducer (state: State = initialState, action: PlanetAction
             return {
                 ...state,
                 planets: planets
+            }
+        case PlanetActions.CHANGE_MODAL_INICATOR:
+            return {
+                ...state,
+                modalIndicator: action.data
+            }
+        case PlanetActions.CHANGE_CONFIRMATION_INDICATOR:
+            return {
+                ...state,
+                confirmationIndicator: action.data
             }
             
         default:
