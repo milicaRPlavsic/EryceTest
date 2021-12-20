@@ -200,8 +200,8 @@ input:focus {
 }
 
 .modal-popup {
-  position: absolute;
-  z-index: 100;
+  position: relative;
+  z-index: 1000;
   width: 100%;
   top: 5vh;
   left: 50%;

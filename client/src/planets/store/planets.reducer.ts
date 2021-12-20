@@ -40,9 +40,13 @@ export function PlanetReducer (state: State = initialState, action: PlanetAction
                 })
                 }
         case PlanetActions.UPDATE_PLANET:
-           const updatedPlanet = {...state.planets[action.data.id], ...action.data};
+            
            const planets = [...state.planets]
-           planets[action.data.id]=updatedPlanet
+           let updatedPlanet = planets.find((planet) => planet.id == action.data.id)
+           updatedPlanet = {...updatedPlanet, ...action.data};
+           
+           const index = planets.findIndex((planet) => planet.id == action.data.id)
+           planets[index]=updatedPlanet;
             return {
                 ...state,
                 planets: planets

@@ -1,7 +1,5 @@
 <router-outlet></router-outlet>
-<app-form-modal *ngIf="modalIndicator | async"></app-form-modal>
-<app-form-confirmation *ngIf="confirmationIndicator | async" (onConfirm)=""></app-form-confirmation>
-
+<div id="backdrop" *ngIf="modalIndicator || (confirmationIndicator && modalIndicator)"></div>
 
 
 

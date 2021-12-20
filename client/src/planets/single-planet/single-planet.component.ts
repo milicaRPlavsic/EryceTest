@@ -2,10 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { createFeatureSelector, createSelector, Store } from "@ngrx/store";
 import * as PlanetReducer from "../store/planets.reducer";
+import * as PlanetActions from '../store/planets.actions';
 import { Observable } from "rxjs";
 import { Planet } from "../model/Planet";
 import { Params } from "@angular/router";
 import { withLatestFrom } from "rxjs/operators";
+import { Action } from "rxjs/internal/scheduler/Action";
 
 @Component({
   selector: "app-single-planet",
@@ -23,6 +25,10 @@ export class SinglePlanetComponent implements OnInit {
 
   planet: Planet;
 
+  modalIndicatorSelector = createSelector(this.stateSelector, state => state.modalIndicator);
+
+  modalIndicator: Observable<boolean> = this.store.select(this.modalIndicatorSelector);
+
   constructor(
     private store: Store<PlanetReducer.State>,
     private route: ActivatedRoute
@@ -34,7 +40,6 @@ export class SinglePlanetComponent implements OnInit {
       );
 
       planetsWithRouteParam$.subscribe( sub =>  { 
-        // this.planet = sub[0][ sub[1]['id'] - 1]       // promeni ovo 
         const planets: Planet[] = sub[0];
         const id = +sub[1].id;
         this.planet = planets.find(planet => planet.id === id);

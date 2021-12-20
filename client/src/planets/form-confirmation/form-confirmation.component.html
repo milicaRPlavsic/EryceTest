@@ -1,17 +1,16 @@
 
 <div id="modal-popup" class="modal-popup card-popup">
-    <form [formGroup]="formConfirmation" (ngSubmit)="onSubmit()">
+<h2> Do you want to {{mode}} planet with name {{planet.planetName}}</h2>    
       <div class="container">
         <h2 id="confirm-text"></h2>
         <br />
-        <div class="clearfix">
+        <div>
           <button  id="cancel-popup" type="button" class="btn btn--passive" (click)="cancelConfirmation()">
-            Cancel
+            cancel
           </button>
-          <button (click)="onConfirm.emit()" id="confirm-popup" type="submit" class="btn btn--success">
-            Confirm
+          <button id="confirm-popup" type="submit" class="btn btn--success" (click)="confirmConfirmation()">
+            confirm
           </button>
         </div>
       </div>
-    </form>
 </div>

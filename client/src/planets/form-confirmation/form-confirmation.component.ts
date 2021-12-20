@@ -1,9 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {Store} from '@ngrx/store'
 import * as PlanetReducer from '../store/planets.reducer'
 import * as PlanetActions from '../store/planets.actions'
-import {FormModalComponent} from '../form-modal/form-modal.component'
+import {Planet} from '../model/Planet'
 
 @Component({
   selector: 'app-form-confirmation',
@@ -11,30 +11,35 @@ import {FormModalComponent} from '../form-modal/form-modal.component'
   styleUrls: ['./form-confirmation.component.scss']
 })
 export class FormConfirmationComponent implements OnInit {
-  @Output() onConfirm
+  
+  @Input() planet: Planet;
+  @Input() mode: string;
 
-  formConfirmation : FormGroup;
   constructor(private store: Store<PlanetReducer.State>) {}
 
   ngOnInit(): void {
-    this.formConfirmation = new FormGroup({
-
-    })
   }
 
-  onSubmit() {
-    console.log(this.formConfirmation);
+
+  confirmConfirmation() {
+   
     this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(false));
     this.store.dispatch(new PlanetActions.ChangeModalIndicator(false));
-    // mode - edit or create
-
+    if(this.mode === 'create') {
+     
+      this.store.dispatch(new PlanetActions.AddPlanet(this.planet));
+     
+    }
+    else( console.log('edit ', this.planet.id));
+    this.store.dispatch(new PlanetActions.UpdatePlanet(this.planet));
   }
 
   cancelConfirmation() {
     this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(false));
     this.store.dispatch(new PlanetActions.ChangeModalIndicator(false));
-  }
+  
 
 
+}
 }
 

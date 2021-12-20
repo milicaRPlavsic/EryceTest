@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import * as PlanetReducer from "../store/planets.reducer";
@@ -13,6 +13,9 @@ import * as PlanetActions from '../store/planets.actions'
 })
 export class HeaderComponent implements OnInit {
 
+
+  //@Output() onCreate = new EventEmitter<string>();
+  //@Output() searchText: string=''
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<PlanetReducer.State>) { }
 
@@ -29,8 +32,9 @@ export class HeaderComponent implements OnInit {
 
   onCreatePlanet() {
 
+    console.log('create')
     this.store.dispatch(new PlanetActions.ChangeModalIndicator(true));
-    
+
   }
 
 }

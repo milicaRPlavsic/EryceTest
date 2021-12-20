@@ -14,6 +14,9 @@ export class PlanetsGridComponent implements OnInit {
 
   stateSelector = createFeatureSelector<PlanetReducer.State>("PlanetReducer");
   planetsSelector = createSelector(this.stateSelector, state => state.planets);
+  modalIndicatorSelector = createSelector(this.stateSelector, state => state.modalIndicator);
+
+  modalIndicator: Observable<boolean> = this.store.select(this.modalIndicatorSelector);
 
   planets: Observable<Planet[]> = this.store.select(this.planetsSelector);
 

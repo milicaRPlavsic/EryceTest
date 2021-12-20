@@ -16,6 +16,7 @@ import { SinglePlanetHeaderComponent } from './single-planet-header/single-plane
 import { FormModalComponent } from './form-modal/form-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormConfirmationComponent } from './form-confirmation/form-confirmation.component';
+import { SortDirective } from './sort.directive';
 
 
 
@@ -32,6 +33,7 @@ import { FormConfirmationComponent } from './form-confirmation/form-confirmation
     SinglePlanetHeaderComponent,
     FormModalComponent,
     FormConfirmationComponent,
+    SortDirective
     
     ],
   imports: [

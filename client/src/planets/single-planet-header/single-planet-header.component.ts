@@ -3,6 +3,8 @@ import {Store} from '@ngrx/store';
 import * as PlanetReducer from '../store/planets.reducer';
 import * as PlanetActions from '../store/planets.actions'
 import { Router } from '@angular/router';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-single-planet-header',
@@ -25,7 +27,8 @@ export class SinglePlanetHeaderComponent implements OnInit {
   }
 
   onEdit() {
-    
+    console.log('edit');
+    this.store.dispatch(new PlanetActions.ChangeModalIndicator(true));
   }
 
 }

@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-form-modal *ngIf="modalIndicator | async"></app-form-modal>
 <div class="grid-container">
   <app-planet-grid
     *ngFor="let planet of planets | async"

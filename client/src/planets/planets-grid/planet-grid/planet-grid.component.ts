@@ -19,6 +19,7 @@ export class PlanetGridComponent implements OnInit {
   }
 
   onPlanetGrid(planet: Planet) {
+    console.log('on planet')
     this.router.navigate(['planets', planet.id])
   }
 
