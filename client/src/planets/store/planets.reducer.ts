@@ -26,8 +26,14 @@ export function PlanetReducer (state: State = initialState, action: PlanetAction
                 ...state,
                 planets: [...action.data]
             }
-       
+        
+        case PlanetActions.POST_PLANET:
+            return {
+                ...state
+                }
+
         case PlanetActions.ADD_PLANET:
+            console.log('add action')
             return {
                 ...state,
                 planets: [...state.planets, action.data]
@@ -36,7 +42,7 @@ export function PlanetReducer (state: State = initialState, action: PlanetAction
             return {
                 ...state,
                 planets : state.planets.filter((planet, index) => {
-                    return (index+1)!== action.id;
+                    return planet['id']!== action.id;
                 })
                 }
         case PlanetActions.UPDATE_PLANET:

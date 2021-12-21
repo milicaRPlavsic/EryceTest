@@ -8,6 +8,7 @@ export const DELETE_PLANET = 'Delete Planet';
 export const UPDATE_PLANET = 'Update Planet';
 export const CHANGE_MODAL_INICATOR ='Change modal indicator';
 export const CHANGE_CONFIRMATION_INDICATOR ='Change confirmation indicator';
+export const POST_PLANET = 'Post planet';
 
 
 export class SetPlanets implements Action {
@@ -20,9 +21,16 @@ export class FetchPlanets implements Action {
     
 }
 
-export class AddPlanet implements Action {
-    readonly type = ADD_PLANET
+export class PostPlanet implements Action {
+    readonly type = POST_PLANET
     constructor(public data: Planet) {}
+}
+
+export class AddPlanet implements Action {
+  
+    readonly type = ADD_PLANET
+    constructor(public data: Planet) {
+    }
 }
 
 export class DeletePlanet implements Action {
@@ -46,5 +54,5 @@ export class ChangeConfirmationIndicator implements Action {
 
 }
 
-export type Actions = SetPlanets | FetchPlanets | AddPlanet | DeletePlanet | UpdatePlanet | ChangeModalIndicator | ChangeConfirmationIndicator
+export type Actions = SetPlanets | FetchPlanets | AddPlanet | DeletePlanet | UpdatePlanet | ChangeModalIndicator | ChangeConfirmationIndicator | PostPlanet
 

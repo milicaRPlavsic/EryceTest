@@ -4,6 +4,8 @@ import {Store} from '@ngrx/store'
 import * as PlanetReducer from '../store/planets.reducer'
 import * as PlanetActions from '../store/planets.actions'
 import {Planet} from '../model/Planet'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-form-confirmation',
@@ -15,7 +17,7 @@ export class FormConfirmationComponent implements OnInit {
   @Input() planet: Planet;
   @Input() mode: string;
 
-  constructor(private store: Store<PlanetReducer.State>) {}
+  constructor(private store: Store<PlanetReducer.State>, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -27,18 +29,24 @@ export class FormConfirmationComponent implements OnInit {
     this.store.dispatch(new PlanetActions.ChangeModalIndicator(false));
     if(this.mode === 'create') {
      
-      this.store.dispatch(new PlanetActions.AddPlanet(this.planet));
+      this.store.dispatch(new PlanetActions.PostPlanet(this.planet));
      
     }
-    else( console.log('edit ', this.planet.id));
+    else if (this.mode === 'edit') {
     this.store.dispatch(new PlanetActions.UpdatePlanet(this.planet));
   }
 
-  cancelConfirmation() {
-    this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(false));
-    this.store.dispatch(new PlanetActions.ChangeModalIndicator(false));
-  
+    else if (this.mode === 'delete'){
+       this.store.dispatch(new PlanetActions.DeletePlanet(this.planet['id']));
+       this.router.navigate(['planets','grid']);
+    }
 
+  }
+
+  cancelConfirmation() {
+    this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(false))
+    this.store.dispatch(new PlanetActions.ChangeModalIndicator(false));
+    
 
 }
 }

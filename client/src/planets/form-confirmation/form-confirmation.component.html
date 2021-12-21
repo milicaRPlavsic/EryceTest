@@ -1,6 +1,8 @@
 
 <div id="modal-popup" class="modal-popup card-popup">
-<h2> Do you want to {{mode}} planet with name {{planet.planetName}}</h2>    
+<br>
+<h2 style="margin: 5%; text-align: center;" *ngIf="mode!=='invalid'"> Do you want to {{mode}} planet with name {{planet?.planetName}}</h2> 
+<h2 style="margin: 5%; text-align: center;"  *ngIf="mode=='invalid'"> Invalid data </h2>       
       <div class="container">
         <h2 id="confirm-text"></h2>
         <br />
@@ -8,7 +10,7 @@
           <button  id="cancel-popup" type="button" class="btn btn--passive" (click)="cancelConfirmation()">
             cancel
           </button>
-          <button id="confirm-popup" type="submit" class="btn btn--success" (click)="confirmConfirmation()">
+          <button id="confirm-popup" type="submit" class="btn btn--success" (click)="confirmConfirmation()" *ngIf="mode!=='invalid'">
             confirm
           </button>
         </div>

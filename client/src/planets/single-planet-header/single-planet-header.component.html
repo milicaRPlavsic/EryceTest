@@ -1,7 +1,8 @@
+<app-form-confirmation *ngIf="confirmationIndicator | async" [planet]="planet" [mode]="mode"></app-form-confirmation> 
 <header>
     <h1>{{planet?.planetName}}</h1>
     <div>
       <button (click)="onDelete()">Delete</button>
     </div>
     <button (click)="onEdit()">Edit</button>
-  </header>
+</header>

@@ -33,7 +33,6 @@ export class PlanetsTableComponent implements OnInit {
   ngOnInit(): void {}
 
   onPlanetTable(planet: Planet) {
-    console.log("bla");
     this.router.navigate(["planets", planet.id]);
   }
 }

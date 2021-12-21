@@ -22,7 +22,12 @@ export class PlanetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new PlanetActions.FetchPlanets());
+    console.log(this.modalIndicator)
     
+  }
+
+  onBackDrop() {
+    console.log('backdrop');
   }
 
   

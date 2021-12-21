@@ -45,10 +45,10 @@ export class PlanetsEffects {
     ) 
 
     
-    @Effect({dispatch: false})
-    addPlanet = this.actions.pipe
-    (ofType(PlanetActions.ADD_PLANET),
-    map( (action: PlanetActions.AddPlanet) =>  { 
+    @Effect()
+    postPlanet = this.actions.pipe
+    (ofType(PlanetActions.POST_PLANET),
+    map( (action: PlanetActions.PostPlanet) =>  { 
       const planet = action.data;
       const fd: FormData = new FormData();
       fd.append("planetName" , planet.planetName);
@@ -59,15 +59,17 @@ export class PlanetsEffects {
       fd.append("description", planet.description)
       fd.append("imageUrl", planet.imageUrl)
       fd.append( "imageName", planet.imageName) 
-      return planet
+      return fd
     }),
-    switchMap( (planet: Planet) => {
+    switchMap( (planet: FormData) => {
       return this.http.post<Planet>(`http://localhost:3001/api/planets`, planet)
     }),
 
-    map(planet => {
+    map((planet: Planet) => {
      
-      // set planets??
+      console.log(planet)
+      return new PlanetActions.AddPlanet(planet);
+      
     })
 
     )
@@ -79,6 +81,7 @@ export class PlanetsEffects {
     map( (action: PlanetActions.UpdatePlanet) =>  { 
       const planet = action.data;
       const fd: FormData = new FormData();
+      fd.append("id", planet.id.toString())
       fd.append("planetName" , planet.planetName);
       fd.append("planetColor", planet.planetColor);
       fd.append("planetRadiusKM", planet.planetRadiusKM);
@@ -87,11 +90,11 @@ export class PlanetsEffects {
       fd.append("description", planet.description)
       fd.append("imageUrl", planet.imageUrl)
       fd.append( "imageName", planet.imageName) 
-      return planet
+      return fd
     }),
-    switchMap( (planet: Planet) => {
+    switchMap( (planet: FormData) => {
       console.log('put')
-      return this.http.put<Planet>(`http://localhost:3001/api/planets/${planet.id}`, planet)
+      return this.http.put<Planet>(`http://localhost:3001/api/planets/${planet.get('id')}`, planet)
     })
 
     )

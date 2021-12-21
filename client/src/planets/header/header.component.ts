@@ -14,9 +14,6 @@ import * as PlanetActions from '../store/planets.actions'
 export class HeaderComponent implements OnInit {
 
 
-  //@Output() onCreate = new EventEmitter<string>();
-  //@Output() searchText: string=''
-
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<PlanetReducer.State>) { }
 
   ngOnInit(): void {
@@ -32,7 +29,6 @@ export class HeaderComponent implements OnInit {
 
   onCreatePlanet() {
 
-    console.log('create')
     this.store.dispatch(new PlanetActions.ChangeModalIndicator(true));
 
   }

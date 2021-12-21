@@ -1,5 +1,6 @@
+<div id="backdrop" *ngIf="modalIndicator | async" (click)="onBackDrop()"></div>
 <router-outlet></router-outlet>
-<div id="backdrop" *ngIf="modalIndicator || (confirmationIndicator && modalIndicator)"></div>
+
 
 
 

@@ -14,20 +14,27 @@ import { Observable } from 'rxjs';
 export class SinglePlanetHeaderComponent implements OnInit {
 
   @Input() planet;
+  mode: string;
 
-  constructor(private store: Store<PlanetReducer.State>, private router: Router) { }
+  stateSelector = createFeatureSelector<PlanetReducer.State>("PlanetReducer");
+
+  confirmationIndicatorSelector = createSelector(this.stateSelector, state => state.confirmationIndicator);
+  confirmationIndicator : Observable<boolean> = this.store.select(this.confirmationIndicatorSelector);
+
+  constructor(private store: Store<PlanetReducer.State>) { }
 
   ngOnInit(): void {
 
   }
 
   onDelete() {
-    this.store.dispatch(new PlanetActions.DeletePlanet(this.planet['id']));
-    this.router.navigate(['planets','grid']);
+    this.mode='delete';
+    console.log('delete')
+    this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(true));
   }
 
   onEdit() {
-    console.log('edit');
+    this.mode='edit';
     this.store.dispatch(new PlanetActions.ChangeModalIndicator(true));
   }
 

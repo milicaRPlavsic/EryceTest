@@ -1,123 +1,140 @@
-<app-form-confirmation *ngIf="confirmationIndicator | async" [planet]="planet" [mode]="mode"></app-form-confirmation> 
+<app-form-confirmation
+  *ngIf="confirmationIndicator | async"
+  [planet]="planet"
+  [mode]="mode"
+></app-form-confirmation>
 <div class="modal card">
-    <div class="modal__content">
-      <label> Create planet </label><br />
-      <form [formGroup]="form">
-        <div class="form-row">
-          <div class="form-col-25">
-            <div id="img-preview"></div>
-          </div>
-          <div class="form-col-75">
-            <label class="btn" style="float: right ;" for="choose-file"
-              >Browse</label
-            >
-            <input
-              type="file"
-              accept="image/*"
-              style="display: none"
-              formControlName="imageUrl"
+  <div class="modal__content">
+    <label> Create planet </label><br />
+    <form [formGroup]="form">
+      <div class="form-row">
+        <div class="form-col-25">
+          <div id="img-preview"></div>
+        </div>
+        <div class="form-col-75">
+          <div *ngIf="filePath && filePath !== ''">
+            <img
+              [src]="filePath"
+              [alt]="form.get('imageName').value"
+              style="height: 100%"
+              class="img-radius"
+              width="50"
+              height="50"
             />
           </div>
+          <input type="file" accept="image/*" (change)="imagePreview($event)" />
         </div>
-        <div class="form-row">
-          <div class="form-col-25">
-            <label>Image name</label>
-          </div>
-          <div class="form-col-75">
-            <input id="image-name"
-            name="imageName"
-            placeholder="no image..." 
+      </div>
+      <div class="form-row">
+        <div class="form-col-25">
+          <label>Image name</label>
+        </div>
+        <div class="form-col-75">
+          <input
+            id="image-name"
+            placeholder="no image..."
             formControlName="imageName"
-            />
-          </div>
+          />
         </div>
-        <div class="form-row">
-          <div class="form-col-25">
-            <label for="title">Name</label>
-          </div>
-          <div class="form-col-75">
-            <input
-              placeholder="name..."
-              type="text"
-              name="planetName"
-              id="planetName"
-              formControlName="planetName"
-            />
-          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-col-25">
+          <label for="title">Name</label>
         </div>
-        <div class="form-row">
-          <div class="form-col-25">
-            <label> Description </label>
-          </div>
-          <div class="form-col-75">
-            <textarea
-              style="height: 80px;" name="description"
-              id="description"
-              form="form"
-              placeholder="description..."
-              formControlName="description"
-              ></textarea>
-          </div>
+        <div class="form-col-75">
+          <input
+            placeholder="name..."
+            type="text"
+            id="planetName"
+            formControlName="planetName"
+          />
         </div>
-        <div class="form-row">
-          <div class="form-col-25">
-            <label> Radius in km</label>
-          </div>
-          <div class="form-col-75">
-            <input
-              type="text"
-              formControlName="planetRadiusKM"
-              id="planetRadiusKM"
-              placeholder="radius..."
-            />
-          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-col-25">
+          <label> Description </label>
         </div>
-  
-        <div class="form-row">
-          <div class="form-col-25">
-            <label>Color</label>
-          </div>
-          <div class="form-col-75">
-            <input
-              type="text"
-              formControlName="planetColor"
-              id="planetColor"
-              placeholder="color..."
-            />
-          </div>
+        <div class="form-col-75">
+          <textarea
+            style="height: 80px"
+            id="description"
+            form="form"
+            placeholder="description..."
+            formControlName="description"
+          ></textarea>
         </div>
-  
-        <div class="form-row">
-          <div class="form-col-25">
-            <label> Dist.from Sun</label>
-          </div>
-          <div class="form-col-75">
-            <input
+      </div>
+      <div class="form-row">
+        <div class="form-col-25">
+          <label> Radius in km</label>
+        </div>
+        <div class="form-col-75">
+          <input
+            type="text"
+            formControlName="planetRadiusKM"
+            id="planetRadiusKM"
+            placeholder="radius..."
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-col-25">
+          <label>Color</label>
+        </div>
+        <div class="form-col-75">
+          <input
+            type="text"
+            formControlName="planetColor"
+            id="planetColor"
+            placeholder="color..."
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-col-25">
+          <label> Dist.from Sun</label>
+        </div>
+        <div class="form-col-75">
+          <input
             formControlName="distInMillionsKM[fromSun]"
-              type="text"
-              id="fromSun"
-              placeholder="dist. from Sun..."
-            />
-          </div>
+            type="text"
+            id="fromSun"
+            placeholder="dist. from Sun..."
+          />
         </div>
-  
-        <div class="form-row">
-          <div class="form-col-25">
-            <label>Dist.from Earth</label>
-          </div>
-          <div class="form-col-75">
-            <input
+      </div>
+
+      <div class="form-row">
+        <div class="form-col-25">
+          <label>Dist.from Earth</label>
+        </div>
+        <div class="form-col-75">
+          <input
             formControlName="distInMillionsKM[fromEarth]"
-              type="text"
-              id="fromEarth"
-              placeholder="dist. from Earth..."
-            />
-          </div>
+            type="text"
+            id="fromEarth"
+            placeholder="dist. from Earth..."
+          />
         </div>
-        <div class="modal__actions">
-          <button class="btn btn--passive" type="button" (click)="onCancelFormModal()">cancel</button>
-          <button class="btn btn--success" type="button" (click)="onCreateFormModal()">{{mode}}</button>
-        </div>
-      </form>
-    </div>  
+      </div>
+      <div class="modal__actions">
+        <button
+          class="btn btn--passive"
+          type="button"
+          (click)="onCancelFormModal()"
+        >
+          cancel
+        </button>
+        <button
+          class="btn btn--success"
+          type="button"
+          (click)="onCreateFormModal()"
+        >
+          {{ mode }}
+        </button>
+      </div>
+    </form>
   </div>
+</div>

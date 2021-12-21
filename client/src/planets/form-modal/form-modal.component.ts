@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
 import * as PlanetReducer from '../store/planets.reducer'
 import * as PlanetActions from '../store/planets.actions'
@@ -15,8 +15,8 @@ import { Planet } from '../model/Planet';
 export class FormModalComponent implements OnInit {
 
   @Input() planet: Planet;
-  formData: FormData;
   mode: string;
+  filePath: string;
 
   form: FormGroup;
   stateSelector = createFeatureSelector<PlanetReducer.State>("PlanetReducer");
@@ -34,32 +34,32 @@ export class FormModalComponent implements OnInit {
 
     if(!this.planet) {
         this.form = new FormGroup({
-          'imageUrl' : new FormControl(null),
-          'imageName' : new FormControl(null),
-          'planetName' : new FormControl(null),
-          'description' : new FormControl(null),
-          'planetRadiusKM' : new FormControl(null),
-          'planetColor' : new FormControl(null),
-          'distInMillionsKM[fromSun]' : new FormControl(null),
-          'distInMillionsKM[fromEarth]' : new FormControl(null),
+          'imageUrl' : new FormControl(null, Validators.required),
+          'imageName' : new FormControl(null, Validators.required),
+          'planetName' : new FormControl(null, Validators.required),
+          'description' : new FormControl(null, Validators.required),
+          'planetRadiusKM' : new FormControl(null, Validators.required),
+          'planetColor' : new FormControl(null, Validators.required),
+          'distInMillionsKM[fromSun]' : new FormControl(null, Validators.required),
+          'distInMillionsKM[fromEarth]' : new FormControl(null, Validators.required),
       })
       this.mode = 'create';
     }
 
     else {
       this.form = new FormGroup({
-        'imageUrl' : new FormControl(null),
-        'imageName' : new FormControl(this.planet.imageName),
-        'planetName' : new FormControl(this.planet.planetName),
-        'description' : new FormControl(this.planet.description),
-        'planetRadiusKM' : new FormControl(this.planet.planetRadiusKM),
-        'planetColor' : new FormControl(this.planet.planetColor),
-        'distInMillionsKM[fromSun]' : new FormControl(this.planet.distInMillionsKM.fromSun),
-        'distInMillionsKM[fromEarth]' : new FormControl(this.planet.distInMillionsKM.fromEarth),
+        'imageUrl' : new FormControl(this.planet.imageUrl, Validators.required),
+        'imageName' : new FormControl(this.planet.imageName, Validators.required),
+        'planetName' : new FormControl(this.planet.planetName, Validators.required),
+        'description' : new FormControl(this.planet.description, Validators.required),
+        'planetRadiusKM' : new FormControl(this.planet.planetRadiusKM, Validators.required),
+        'planetColor' : new FormControl(this.planet.planetColor, Validators.required),
+        'distInMillionsKM[fromSun]' : new FormControl(this.planet.distInMillionsKM.fromSun, Validators.required),
+        'distInMillionsKM[fromEarth]' : new FormControl(this.planet.distInMillionsKM.fromEarth, Validators.required),
 
     })
 
-    this.mode = 'edit';
+    this.mode='edit';
     
   }
 } 
@@ -67,11 +67,20 @@ export class FormModalComponent implements OnInit {
 
   onCancelFormModal() {
    this.store.dispatch(new PlanetActions.ChangeModalIndicator(false));
+   this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(false))
   }
 
   onCreateFormModal() {
-    this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(true));
     
+
+    if(!this.form.valid) {
+      console.log('invalid form')
+      this.mode='invalid'
+    }
+    
+    else {
+    
+
     this.planet = {
       ... this.planet,
       planetName: this.form.get('planetName').value,
@@ -83,15 +92,36 @@ export class FormModalComponent implements OnInit {
         fromEarth: this.form.get('distInMillionsKM[fromEarth]').value,
         fromSun:  this.form.get('distInMillionsKM[fromSun]').value,
       },
-      imageUrl : "https://storage.googleapis.com/planets-fr.appspot.com/mercury.jpg",
+      imageUrl : this.filePath ? this.filePath : this.planet.imageUrl
+    }
+  }
 
-    } 
-
-
-
-    
+  this.store.dispatch(new PlanetActions.ChangeConfirmationIndicator(true));
+  console.log(this.mode)
 
   }
+  
+
+
+  imagePreview(e) {
+    const file = (e.target as HTMLInputElement).files[0];
+
+    this.form.get('imageUrl').updateValueAndValidity()
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.filePath = reader.result as string;
+      console.log(this.filePath)
+      this.form.patchValue({
+        imageName: file.name,
+        imageUrl : this.filePath
+      });
+
+    }
+
+    reader.readAsDataURL(file)
+  }
+
 
   
 

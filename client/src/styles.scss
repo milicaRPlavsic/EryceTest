@@ -96,7 +96,7 @@ input  {
   width: 100%;
   border: 1px solid #ccc;
   padding: 12px; /*0.4rem 0.2rem;*/
-  color: #f8be97;
+  color: #111111;
   resize: vertical;
 }
 
@@ -106,7 +106,7 @@ textarea {
   resize: vertical;
   font: inherit;
   width: 100%;
-  color:#464646;
+  color:#111111;
 }
 
 input:focus {
@@ -194,16 +194,16 @@ input:focus {
   position: absolute;
   z-index: 100;
   width: 100%;
-  top: 5vh;
+  top: 20%;
   left: 50%;
   display: block;
 }
 
 .modal-popup {
-  position: relative;
+  position: absolute;
   z-index: 1000;
   width: 100%;
-  top: 5vh;
+  top: 40%;
   left: 50%;
   display: block;
 }
@@ -232,7 +232,7 @@ input:focus {
   background: rgba(0, 0, 0, 0.75);
   z-index: 10;
   pointer-events: none;
-  display: none;
+  display: block;
 }
 
 #backdrop.visible {
