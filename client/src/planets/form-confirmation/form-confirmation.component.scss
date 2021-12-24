@@ -1,0 +1,31 @@
+.modal-popup {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  top: 40%;
+  left: 50%;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .modal-popup {
+    width: 20rem;
+    left: calc(50% - 10rem);
+  }
+}
+
+.card-popup {
+  background: #eb945b;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.container {
+  padding: 16px;
+  text-align: center;
+}
+
+.text {
+  margin: 5%;
+  text-align: center;
+}

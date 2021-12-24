@@ -1,23 +1,25 @@
-import { Directive, Input, Renderer2, ElementRef, HostListener } from '@angular/core';
+import {
+  Directive,
+  Input,
+  Renderer2,
+  ElementRef,
+  HostListener,
+} from "@angular/core";
 
-import {Sort} from "../planets/sort"
+import { Sort } from "../planets/sort";
 
-import { Planet } from './model/Planet';
-
+import { Planet } from "./model/Planet";
 
 @Directive({
-  selector: '[appSort]'
+  selector: "[appSort]",
 })
 export class SortDirective {
+  @Input() appSort: Planet[];
 
-  @Input() appSort : Planet [];
-
-
-  constructor(private renderer: Renderer2, private targetElement: ElementRef) { }
+  constructor(private renderer: Renderer2, private targetElement: ElementRef) {}
 
   @HostListener("click")
   sortData() {
-
     const sort = new Sort();
 
     const elem = this.targetElement.nativeElement;
@@ -35,7 +37,5 @@ export class SortDirective {
       this.appSort.sort(sort.startSort(property, order, type));
       elem.setAttribute("data-order", "desc");
     }
-
   }
-
 }

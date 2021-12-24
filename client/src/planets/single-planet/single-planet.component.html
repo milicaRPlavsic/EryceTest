@@ -1,46 +1,51 @@
 <app-single-planet-header [planet]="planet"></app-single-planet-header>
-<app-form-modal *ngIf="modalIndicator | async" [planet]="planet"></app-form-modal>
+<app-form-modal
+  *ngIf="modalIndicator | async"
+  [planet]="planet"
+></app-form-modal>
 <div class="grid-container-single" *ngIf="planet">
-    <div>
-      <img class="img-radius" width="70" height="70" src={{planet.imageUrl}}>
-      <h2>{{planet.planetName}}</h2>
-      <div class="inline">
-          <div class="wrap">
-            <p>{{planet.description}}</p>
-          </div>
+  <div>
+    <img class="img-radius img" src="{{ planet.imageUrl }}" />
+    <h2>{{ planet.planetName }}</h2>
+    <div class="inline">
+      <div class="wrap">
+        <p>{{ planet.description }}</p>
       </div>
     </div>
-    <div>
-        <table height=100%; width=100%>
-            <tr>
-              <td style="text-align: center;">
-                <h2>{{planet.planetRadiusKM}}</h2>
-                <p>Radius in km</p>
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align: center;">
-                <h2>{{planet.planetColor}}</h2>
-                <p>Color</p>
-              </td>
-            </tr>
-          </table>
-    </div>
-    <div>
-        <table height=100%; width=100%>
-            <tr>
-              <td style="text-align: center;">
-                <h2>{{planet.distInMillionsKM.fromEarth}}</h2>
-                <p>Dist. from Earth</p>
-            </td>
-            </tr>
-            <tr>
-              <td style="text-align: center;">
-                <h2>{{planet.distInMillionsKM.fromSun}}</h2>
-                <p>Dist. from Sun</p>
-              </td>
-            </tr>
-          </table>
-    </div> 
+  </div>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <h2>{{ planet.planetRadiusKM }}</h2>
+          <p>Radius in km</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h2>{{ planet.planetColor }}</h2>
+          <p>Color</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <h2>{{ planet.distInMillionsKM.fromEarth }}</h2>
+          <p>Dist. from Earth</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h2>{{ planet.distInMillionsKM.fromSun }}</h2>
+          <p>Dist. from Sun</p>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
-
+<div *ngIf="!planet">
+  <h2 class="error">Planet not found</h2>
+</div>

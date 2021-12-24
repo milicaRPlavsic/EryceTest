@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+header {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.5rem;
+  background: #e97c4a;
+}
+
+header h1 {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+}
+
+p {
+  margin: 0;
+  color: white;
+  font-size: 0.6rem;
+}
+
+span {
+  margin: 0;
+  color: white;
+  font-size: 0.6rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+h2 {
+  margin: 0;
+  color: white;
+  font-size: 1rem;
+}
+
+header button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid white;
+  color: #e97c4a;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+}
+
+header button:hover,
+header button:active {
+  background: #f8be97;
+  border-color: #f8be97;
+  color: #995200;
+}
+
+label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #464646;
+  display: inline-block;
+}
+
+.btn {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid white;
+  background: white;
+  color: #f67722;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.btn:hover,
+.btn:active {
+  background: #f8be97;
+  border-color: #f67722;
+}
+
+.btn--passive {
+  color: #723812;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.btn--passive:hover,
+.btn--passive:active {
+  background: #f8be97;
+}
+
+.img-radius {
+  border-radius: 50%;
+}
+
+.inline {
+  display: inline-block;
+  margin: 0em;
+}
+.wrap {
+  display: table;
+  height: 100px;
+  width: 160px;
+  padding: 10px;
+}
+.wrap p {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+button:hover {
+  opacity: 1;
+}

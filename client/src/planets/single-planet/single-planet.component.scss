@@ -1,0 +1,33 @@
+td {
+  text-align: center;
+}
+
+.img {
+  width: 8rem;
+  height: 8rem;
+}
+
+.error {
+  font-size: 30px;
+  color: rgb(117, 7, 7);
+}
+
+table {
+  height: 100%;
+  width: 100%;
+}
+
+.grid-container-single {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 200px 200px;
+  grid-gap: 10px;
+  background-color: white;
+  padding: 10px;
+}
+
+.grid-container-single > div {
+  background-color: #e97c4a;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}

@@ -1,0 +1,79 @@
+input {
+  font: inherit;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 12px; /*0.4rem 0.2rem;*/
+  color: #111111;
+  resize: vertical;
+}
+
+textarea {
+  resize: vertical;
+  font: inherit;
+  width: 100%;
+  color: #111111;
+}
+
+input:focus {
+  outline: none;
+  background: #fff1c4;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 400px) {
+  .modal {
+    width: 40rem;
+    height: 40rem;
+    left: calc(50% - 20rem);
+    top: calc(50% - 20rem);
+  }
+}
+
+.modal {
+  position: absolute;
+  z-index: 100;
+  display: block;
+}
+
+.modal .modal__content {
+  padding: 1rem;
+}
+
+.modal .modal__actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.form-col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.form-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+  background: #f67722;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.text {
+  font-size: 10px;
+  color: rgb(117, 7, 7);
+}

@@ -1,0 +1,19 @@
+.table {
+  width: 100%;
+  font-size: 16px;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px;
+  color: #464646;
+}
+
+.table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr.header,
+.table tr:hover {
+  background-color: #e97c4a;
+}

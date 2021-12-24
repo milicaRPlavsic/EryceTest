@@ -15,7 +15,6 @@
           <div *ngIf="filePath && filePath !== ''">
             <img
               [src]="filePath"
-              [alt]="form.get('imageName').value"
               style="height: 100%"
               class="img-radius"
               width="50"
@@ -27,28 +26,24 @@
       </div>
       <div class="form-row">
         <div class="form-col-25">
-          <label>Image name</label>
-        </div>
-        <div class="form-col-75">
-          <input
-            id="image-name"
-            placeholder="no image..."
-            formControlName="imageName"
-          />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-col-25">
           <label for="title">Name</label>
         </div>
         <div class="form-col-75">
           <input
             placeholder="name..."
             type="text"
-            id="planetName"
             formControlName="planetName"
           />
         </div>
+      </div>
+      <div class="form-row">
+        <span
+          class="text"
+          *ngIf="
+            !form.get('planetName').valid && form.get('planetName').touched
+          "
+          >Please enter valid planet name</span
+        >
       </div>
       <div class="form-row">
         <div class="form-col-25">
@@ -57,12 +52,20 @@
         <div class="form-col-75">
           <textarea
             style="height: 80px"
-            id="description"
             form="form"
             placeholder="description..."
             formControlName="description"
           ></textarea>
         </div>
+      </div>
+      <div class="form-row">
+        <span
+          class="text"
+          *ngIf="
+            !form.get('description').valid && form.get('description').touched
+          "
+          >Please enter valid description</span
+        >
       </div>
       <div class="form-row">
         <div class="form-col-25">
@@ -72,12 +75,20 @@
           <input
             type="text"
             formControlName="planetRadiusKM"
-            id="planetRadiusKM"
             placeholder="radius..."
           />
         </div>
       </div>
-
+      <div class="form-row">
+        <span
+          class="text"
+          *ngIf="
+            !form.get('planetRadiusKM').valid &&
+            form.get('planetRadiusKM').touched
+          "
+          >Please enter valid planet radius</span
+        >
+      </div>
       <div class="form-row">
         <div class="form-col-25">
           <label>Color</label>
@@ -86,12 +97,19 @@
           <input
             type="text"
             formControlName="planetColor"
-            id="planetColor"
             placeholder="color..."
           />
         </div>
       </div>
-
+      <div class="form-row">
+        <span
+          class="text"
+          *ngIf="
+            !form.get('planetColor').valid && form.get('planetColor').touched
+          "
+          >Please enter valid planet color</span
+        >
+      </div>
       <div class="form-row">
         <div class="form-col-25">
           <label> Dist.from Sun</label>
@@ -100,12 +118,20 @@
           <input
             formControlName="distInMillionsKM[fromSun]"
             type="text"
-            id="fromSun"
             placeholder="dist. from Sun..."
           />
         </div>
       </div>
-
+      <div class="form-row">
+        <span
+          class="text"
+          *ngIf="
+            !form.get('distInMillionsKM[fromSun]').valid &&
+            form.get('distInMillionsKM[fromSun]').touched
+          "
+          >Please enter valid distance from Sun</span
+        >
+      </div>
       <div class="form-row">
         <div class="form-col-25">
           <label>Dist.from Earth</label>
@@ -114,10 +140,19 @@
           <input
             formControlName="distInMillionsKM[fromEarth]"
             type="text"
-            id="fromEarth"
             placeholder="dist. from Earth..."
           />
         </div>
+      </div>
+      <div class="form-row">
+        <span
+          class="text"
+          *ngIf="
+            !form.get('distInMillionsKM[fromEarth]').valid &&
+            form.get('distInMillionsKM[fromEarth]').touched
+          "
+          >Please enter valid distance from Earth</span
+        >
       </div>
       <div class="modal__actions">
         <button
@@ -131,6 +166,7 @@
           class="btn btn--success"
           type="button"
           (click)="onCreateFormModal()"
+          [disabled]="!form.valid"
         >
           {{ mode }}
         </button>
